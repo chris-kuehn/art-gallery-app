@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { styled } from "styled-components";
 
-export default function ArtPieces({ data }) {
+export default function HomePage({ data }) {
   return (
     <>
       <h1>Art Gallerie</h1>
@@ -11,7 +11,7 @@ export default function ArtPieces({ data }) {
           return (
             <li key={card.slug}>
               <ImageWrapper>
-                <Link href={`/artPiecePreview/${card.slug}`}>
+                <Link href={`/Subpages/${card.slug}`}>
                   <StyledImage
                     alt={card.name}
                     src={card.imageSource}
