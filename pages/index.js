@@ -1,22 +1,11 @@
 import ArtPieces from "@/components/ArtPieces";
-import useSWR from "swr";
+import ArtPiecePreview from "@/components/ArtPiecePreview";
+import ArtPiecePreviewRouter from "./artPiecePreview/[artPiecePreview]";
 
-const URL = "https://example-apis.vercel.app/api/art";
-
-export default function HomePage() {
-  const { data, isLoading, error } = useSWR(URL);
-  console.log(data);
-  if (isLoading) {
-    return <h1>... is loading</h1>;
-  }
-
-  if (error) {
-    return <h1>Error!</h1>;
-  }
-
+export default function HomePage({ data }) {
   return (
     <>
-      <ArtPieces data={data} />
+      <ArtPiecePreviewRouter data={data} />
     </>
   );
 }
