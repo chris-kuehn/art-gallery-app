@@ -1,18 +1,16 @@
-import { useRouter } from "next/router";
 import { styled } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageWrapper } from ".";
+import { ImageWrapper } from "..";
+import { useRouter } from "next/router";
 
 export default function ArtPiecePreviewRouter({ data }) {
   const router = useRouter();
 
   const currentSlug = router.query.artPiecePreview;
+  console.log(router.query.artPiecePreview);
 
   const currentCard = data.find((card) => card.slug === currentSlug);
-
-  console.log(currentCard);
-  console.log(data);
 
   if (!currentCard) {
     return <h1>This movie doesnt exist</h1>;
@@ -24,9 +22,12 @@ export default function ArtPiecePreviewRouter({ data }) {
     <>
       <ImageWrapper>
         <h1>Artist: {artist}</h1>
-        <h2>name: {name}</h2>
+        <h2>
+          name des Bildes: <br />
+          {name}
+        </h2>
 
-        <Link href={"/artPiecePreview"}>
+        <Link href={"/"}>
           <StyledImage src={imageSource} alt={name} width={640} height={426} />
         </Link>
       </ImageWrapper>
