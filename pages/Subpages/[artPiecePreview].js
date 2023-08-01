@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageWrapper } from "..";
+import { ImageWrapper } from "@/components/ArtPieces";
 import { useRouter } from "next/router";
 
 export default function ArtPiecePreviewRouter({ data }) {
@@ -13,15 +13,24 @@ export default function ArtPiecePreviewRouter({ data }) {
   const currentCard = data.find((card) => card.slug === currentSlug);
 
   if (!currentCard) {
-    return <h1>This movie doesnt exist</h1>;
+    return (
+      <ImageWrapper>
+        <h1>This movie doesnt exist click here to come back:</h1>
+        <Link onClick={router.back}>
+          <p>😶‍🌫️</p>
+        </Link>
+      </ImageWrapper>
+    );
   }
 
   const { imageSource, name, artist } = currentCard;
 
   return (
     <>
+      <StyledButton onClick={router.back}>◁</StyledButton>
       <ImageWrapper>
         <h1>Artist: {artist}</h1>
+
         <h2>
           name des Bildes: <br />
           {name}
@@ -39,4 +48,9 @@ const StyledImage = styled(Image)`
   width: 100%;
   max-width: 400px; /* Set the image to take up 100% of the width of the container */
   height: auto; /* Let the height adjust automatically to maintain the aspect ratio */
+`;
+
+const StyledButton = styled.button`
+  padding: 1rem;
+  margin: 1rem 0 0 1rem;
 `;
