@@ -3,8 +3,6 @@ import Link from "next/link";
 import { styled } from "styled-components";
 
 export default function ArtPieces({ data }) {
-  console.log(data);
-
   return (
     <>
       <h1>Art Gallerie</h1>
@@ -13,14 +11,14 @@ export default function ArtPieces({ data }) {
           return (
             <li key={card.slug}>
               <ImageWrapper>
-                {/* <Link title="Click for full screen view!"> */}
-                <StyledImage
-                  alt={card.name}
-                  src={card.imageSource}
-                  width={640}
-                  height={426}
-                />
-                {/* </Link> */}
+                <Link href={`/artPiecePreview/${card.slug}`}>
+                  <StyledImage
+                    alt={card.name}
+                    src={card.imageSource}
+                    width={640}
+                    height={426}
+                  />
+                </Link>
                 <h2>{card.name}</h2>
                 <h3> by {card.artist}</h3>
               </ImageWrapper>
@@ -32,7 +30,7 @@ export default function ArtPieces({ data }) {
   );
 }
 
-const ImageWrapper = styled.span`
+export const ImageWrapper = styled.span`
   margin: 32px auto;
   box-sizing: content-box;
   display: flex;
