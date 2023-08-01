@@ -6,7 +6,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const URL = "https://example-apis.vercel.app/api/art";
 
 export default function App({ Component, pageProps }) {
-
   const { data, isLoading, error } = useSWR(URL, fetcher);
 
   if (isLoading) {
@@ -16,7 +15,6 @@ export default function App({ Component, pageProps }) {
   if (error) {
     return <h1>Error!</h1>;
   }
-
 
   return (
     <>
