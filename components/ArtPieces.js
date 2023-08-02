@@ -43,12 +43,12 @@ export const ImageWrapper = styled.span`
   text-align: center;
 `;
 
-const StyledImage = styled(Image)`
+export const StyledImage = styled(Image)`
   width: 100%;
   max-width: 400px; /* Set the image to take up 100% of the width of the container */
   height: auto; /* Let the height adjust automatically to maintain the aspect ratio */
 `;
 
-const StyledUl = styled.ul`
+export const StyledUl = styled.ul`
   list-style-type: none;
 `;
