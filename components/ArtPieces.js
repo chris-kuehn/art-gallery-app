@@ -2,8 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { styled } from "styled-components";
 import Header from "./Header";
+import HeartIcon from "./HeartIcon";
 
-export default function ArtPieces({ data }) {
+export default function ArtPieces({ data, artPiecesInfo, toggleFavorite }) {
+  // function hanldeHeartIcon(slug) {
+  //   let favoriteImg = data.map((card) => card.slug === slug);
+
+  //   if (!favoriteImg) {
+  //     setArtPiecesInfo(...favoriteImg);
+  //   } else {
+  //     setArtPiecesInfo({ ...favoriteImg, color: "rgb(191, 46, 80" });
+  //   }
+
   return (
     <>
       <Header />
@@ -12,14 +22,28 @@ export default function ArtPieces({ data }) {
           return (
             <li key={card.slug}>
               <ImageWrapper>
-                <Link href={`/Subpages/${card.slug}`}>
+                {/* <Link href={`/Subpages/${card.slug}`}> */}
+                <PicWrapper>
+                  <HeartIcon
+                    onClick={() => toggleFavorite(card.slug)}
+                    width="50px"
+                    height="50px"
+                    color={
+                      artPiecesInfo.find((piece) => piece.slug === card.slug)
+                        ?.isFavorite
+                        ? "rgb(191, 46, 80)"
+                        : "transparent"
+                    }
+                    strokeColor="rgb(191, 46, 80)"
+                  />
                   <StyledImage
                     alt={card.name}
                     src={card.imageSource}
                     width={640}
                     height={426}
                   />
-                </Link>
+                </PicWrapper>
+                {/* </Link> */}
                 <h2>{card.name}</h2>
                 <h3> by {card.artist}</h3>
               </ImageWrapper>
@@ -51,4 +75,8 @@ export const StyledImage = styled(Image)`
 
 export const StyledUl = styled.ul`
   list-style-type: none;
+`;
+
+const PicWrapper = styled.div`
+  position: relative;
 `;
