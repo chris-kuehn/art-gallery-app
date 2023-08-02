@@ -1,12 +1,9 @@
 import HomeSpotLight from "@/components/HomeSpotLight";
 
-export default function SpotLight() {
-
-    return (
-        <>
-        <HomeSpotLight/>
-        </>
-    )
-
-
+export default function SpotLight({ data }) {
+  return (
+    <>
+      <HomeSpotLight data={data} />
+    </>
+  );
 }
